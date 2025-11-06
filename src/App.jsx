@@ -16,7 +16,7 @@ function App() {
     ],
     backgroundColor: "#FFD1DC",
     textColor: "#555",
-    musicUrl: null
+    musicUrl: "gambar/kks.mp3"
   }
 
   return (

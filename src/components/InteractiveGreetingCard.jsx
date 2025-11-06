@@ -4,7 +4,8 @@ import './InteractiveGreetingCard.css'
 const InteractiveGreetingCard = ({ 
   recipientName = "Sahabat Terbaik",
   senderName = "Flomma Flower",
-  message = "Terima kasih sudah menjadi bagian dari cerita indah hidupku. Semoga kebahagiaan selalu menyertaimu di setiap langkah.",
+  message1 = "Terima kasih sudah menjadi bagian dari cerita indah hidupku. Semoga kebahagiaan selalu menyertaimu di setiap langkah.",
+  message2 = "Terima kasih sudah menjadi bagian dari cerita indah hidupku. Semoga kebahagiaan selalu menyertaimu di setiap langkah.",
   photos = [],
   backgroundColor = "#FFD1DC",
   textColor = "#555",
@@ -31,7 +32,7 @@ const InteractiveGreetingCard = ({
 
   const steps = [
     "Klik kotak pos",
-    "Tarik surat", 
+    "Klik surat", 
     "Baca pesan"
   ]
 
@@ -187,12 +188,12 @@ const InteractiveGreetingCard = ({
             <h2 className="recipient-name" style={{ color: textColor }}>
               Untuk {recipientName}
             </h2>
-            <div className="heart-divider">💖</div>
           </div>
 
           <div className="letter-message">
             <div className="message-content">
-              <p style={{ color: textColor }}>{message}</p>
+              <p style={{ color: textColor }}>{message1}</p>
+              <p style={{ color: textColor }}>{message2}</p>
             </div>
           </div>
 
