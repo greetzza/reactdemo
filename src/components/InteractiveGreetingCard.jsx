@@ -179,9 +179,9 @@ const InteractiveGreetingCard = ({
       onClick={(e) => e.stopPropagation()}
     >
       <div className="letter-paper">
-        {/* <button className="close-button" onClick={() => setShowContent(false)}>
+        <button className="close-button" onClick={() => setShowContent(false)}>
           <i className="fas fa-times"></i>
-        </button> */}
+        </button>
 
         <div className="letter-scrollable-content">
           <div className="letter-header">
