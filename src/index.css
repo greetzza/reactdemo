@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --pink-pastel: #FFD1DC;
+  --pink-medium: #F8BBD0;
+  --pink-dark: #F48FB1;
+  --beige-light: #F5F5DC;
+  --beige: #FFFFD2;
+  --beige-medium: #E8E0D5;
+  --beige-dark: #D2C8BC;
+  --text-dark: #555;
+  --text-light: #777;
+}
+
+body {
+  background-color: var(--beige-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+}

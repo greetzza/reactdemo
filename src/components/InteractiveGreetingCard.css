@@ -1,0 +1,1436 @@
+.interactive-greeting-card {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Content Area untuk centering */
+.content-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+}
+
+.content-area.mobile-content {
+  justify-content: flex-start;
+  padding-top: 20px;
+}
+
+/* Mobile Progress Steps - Compact */
+.mobile-progress-steps {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.mobile-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.mobile-step.completed {
+  opacity: 1;
+}
+
+.mobile-step.current {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.mobile-step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #F48FB1;
+  transition: all 0.3s ease;
+}
+
+.mobile-step.completed .mobile-step-dot {
+  background: #FF868E;
+  transform: scale(1.2);
+}
+
+.mobile-step-text {
+  font-size: 0.7rem;
+  text-align: center;
+  color: #555;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* Desktop Progress Steps */
+.progress-steps {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.step-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.step-indicator.completed {
+  opacity: 1;
+}
+
+.step-indicator.current {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.step-number {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #F48FB1;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.step-indicator.completed .step-number {
+  background: #FF868E;
+}
+
+.step-text {
+  font-size: 0.8rem;
+  text-align: center;
+  color: #555;
+  font-weight: 500;
+}
+
+/* Mailbox Container */
+.mailbox-container {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.mailbox-container.mobile-mailbox {
+  margin-bottom: 10px;
+}
+
+.mailbox-container.mailbox-open {
+  cursor: default;
+}
+
+.mailbox-container:active:not(.mailbox-open) {
+  transform: scale(0.95);
+}
+
+/* Mailbox Styles */
+.mailbox {
+  position: relative;
+  width: 200px;
+  height: 180px;
+  margin: 0 auto;
+}
+
+.mailbox.mobile-mailbox-size {
+  width: 150px;
+  height: 135px;
+}
+
+.mailbox-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.mailbox-door {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 80px;
+  background: #8B4513;
+  border-radius: 10px 10px 0 0;
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: bottom;
+  z-index: 3;
+}
+
+.mailbox-open .mailbox-door {
+  transform: translateX(-50%) rotateX(-120deg);
+}
+
+.mailbox-handle {
+  position: absolute;
+  top: 35px;
+  right: 15px;
+  width: 15px;
+  height: 8px;
+  background: #FFD700;
+  border-radius: 4px;
+}
+
+.mailbox-slot {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 5px;
+  background: #333;
+  border-radius: 2px;
+}
+
+.mailbox-base {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 20px;
+  background: #A0522D;
+  border-radius: 5px;
+}
+
+.mailbox-flag {
+  position: absolute;
+  top: -30px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  z-index: 2;
+}
+
+.flag {
+  width: 30px;
+  height: 20px;
+  background: #FF4444;
+  border-radius: 5px 5px 0 0;
+  transform-origin: bottom left;
+  transition: transform 0.5s ease;
+}
+
+.flag-up {
+  transform: rotate(45deg);
+}
+
+/* Letter Styles */
+.letter {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.letter.mobile-letter {
+  top: 45px;
+}
+
+.letter-visible {
+  z-index: 4;
+}
+
+.letter-pulled {
+  z-index: 10;
+}
+
+.letter-envelope {
+  position: relative;
+  width: 100px;
+  height: 80px;
+  background: #FFF9C4;
+  border-radius: 5px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: all 0.5s ease;
+}
+
+.letter-pulled .letter-envelope {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: #FFF176;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  transform-origin: top;
+  transition: transform 0.5s ease;
+}
+
+.letter-pulled .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.envelope-body {
+  width: 100%;
+  height: 100%;
+  background: #FFF9C4;
+  border-radius: 5px;
+}
+
+.stamp {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 1.2rem;
+  transform: rotate(15deg);
+}
+
+/* Letter Content - Fixed Position di tengah */
+.letter-content-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  padding: 20px;
+}
+
+.letter-content-overlay.content-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.letter-content {
+  background: transparent;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.letter-content.mobile-letter-content {
+  max-width: 400px;
+  width: 95%;
+}
+
+.letter-paper {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  position: relative;
+  border: 3px solid #FFD1DC;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.letter-paper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255,209,220,0.1) 100%);
+  pointer-events: none;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #F48FB1;
+  color: white;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background: #FF868E;
+  transform: scale(1.1);
+}
+
+.letter-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-right: 40px;
+}
+
+.recipient-name {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.heart-divider {
+  font-size: 1.8rem;
+  opacity: 0.7;
+}
+
+.letter-message {
+  margin-bottom: 25px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.message-scroll {
+  max-height: 150px;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #FFD1DC #f1f1f1;
+}
+
+.message-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.message-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.message-scroll::-webkit-scrollbar-thumb {
+  background: #FFD1DC;
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+.message-scroll::-webkit-scrollbar-thumb:hover {
+  background: #F48FB1;
+}
+
+.letter-message p {
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Photo Gallery - Portrait Mode 9:16 */
+.photo-gallery {
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photos-container-portrait {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  height: 500px;
+  margin: 0 auto 20px;
+  perspective: 1000px;
+}
+
+.photo-frame-portrait {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.8) rotateY(10deg);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  border: 3px solid white;
+}
+
+.photo-frame-portrait.active {
+  opacity: 1;
+  transform: scale(1) rotateY(0deg);
+  z-index: 2;
+}
+
+.photo-frame-portrait:not(.active) {
+  transform: scale(0.7) rotateY(-5deg);
+  filter: blur(2px);
+  z-index: 1;
+}
+
+.photo-frame-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.photo-frame-portrait.active img {
+  transform: scale(1.05);
+}
+
+.photo-overlay-portrait {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, transparent 70%, rgba(0,0,0,0.1) 100%);
+  pointer-events: none;
+}
+
+.photo-number {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #F48FB1;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.8rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Portrait Photo Dots */
+.photo-dots-portrait {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.dot-portrait {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #FFD1DC;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.dot-portrait.active {
+  background: #F48FB1;
+  transform: scale(1.3);
+}
+
+.dot-portrait::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 2px solid #F48FB1;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dot-portrait.active::before {
+  opacity: 0.3;
+}
+
+.letter-footer {
+  text-align: center;
+  position: relative;
+  padding-top: 20px;
+  margin-top: auto;
+}
+
+.sender-name {
+  font-style: italic;
+  margin-bottom: 15px;
+}
+
+.seal {
+  position: absolute;
+  top: -10px;
+  right: 20px;
+  font-size: 1.5rem;
+  transform: rotate(15deg);
+}
+
+/* Instructions */
+.pull-instruction,
+.click-instruction {
+  position: absolute;
+  text-align: center;
+  animation: bounce 2s infinite;
+  width: 100%;
+}
+
+.pull-instruction {
+  bottom: -60px;
+  color: #555;
+}
+
+.pull-instruction.mobile-pull-instruction {
+  bottom: -50px;
+}
+
+.click-instruction {
+  bottom: -80px;
+  color: #555;
+}
+
+.click-instruction.mobile-click-instruction {
+  bottom: -60px;
+}
+
+.hand-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.pulse-circle {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #F48FB1;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  position: relative;
+  animation: pulse 2s infinite;
+}
+
+.pulse-circle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: #F48FB1;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+/* Floating Elements */
+.floating-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.floating-heart,
+.floating-flower,
+.floating-sparkle,
+.floating-star {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-heart {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.floating-flower {
+  top: 20%;
+  right: 10%;
+  animation-delay: 1.5s;
+}
+
+.floating-sparkle {
+  bottom: 30%;
+  left: 15%;
+  animation-delay: 3s;
+}
+
+.floating-star {
+  bottom: 20%;
+  right: 15%;
+  animation-delay: 4.5s;
+}
+
+/* Reset Button */
+.reset-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #F48FB1;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(244, 143, 177, 0.3);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.reset-button.mobile-reset-button {
+  bottom: 15px;
+  right: 15px;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+}
+
+.reset-button:hover {
+  background: #FF868E;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(244, 143, 177, 0.4);
+}
+
+/* Animations */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .interactive-greeting-card {
+    padding: 15px;
+    justify-content: flex-start;
+    min-height: calc(100vh - 60px);
+  }
+
+  .content-area.mobile-content {
+    padding-top: 10px;
+  }
+
+  .mailbox {
+    width: 150px;
+    height: 135px;
+  }
+
+  .letter-paper {
+    padding: 25px 20px;
+    border-radius: 15px;
+  }
+
+  .recipient-name {
+    font-size: 1.5rem;
+  }
+
+  .letter-message p {
+    font-size: 0.9rem;
+  }
+
+  .photos-container-portrait {
+    max-width: 240px;
+    height: 427px;
+  }
+  
+  .photo-frame-portrait {
+    border-radius: 12px;
+  }
+  
+  .photo-number {
+    width: 25px;
+    height: 25px;
+    font-size: 0.7rem;
+    bottom: 12px;
+    right: 12px;
+  }
+
+  .message-scroll {
+    max-height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-progress-steps {
+    max-width: 280px;
+    gap: 10px;
+  }
+
+  .mobile-step-text {
+    font-size: 0.65rem;
+  }
+
+  .mailbox.mobile-mailbox-size {
+    width: 130px;
+    height: 117px;
+  }
+
+  .letter.mobile-letter {
+    top: 40px;
+  }
+
+  .letter-paper {
+    padding: 20px 15px;
+  }
+
+  .photos-container-portrait {
+    max-width: 200px;
+    height: 356px;
+  }
+  
+  .photo-frame-portrait {
+    border-radius: 10px;
+    border: 2px solid white;
+  }
+  
+  .photo-number {
+    width: 22px;
+    height: 22px;
+    font-size: 0.65rem;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .photo-dots-portrait {
+    gap: 10px;
+  }
+  
+  .dot-portrait {
+    width: 8px;
+    height: 8px;
+  }
+
+  .message-scroll {
+    max-height: 100px;
+  }
+
+  .pull-instruction.mobile-pull-instruction,
+  .click-instruction.mobile-click-instruction {
+    bottom: -40px;
+  }
+
+  .hand-icon {
+    font-size: 1.5rem;
+  }
+
+  .pulse-circle {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-height: 700px) and (max-width: 768px) {
+  .interactive-greeting-card {
+    min-height: 100vh;
+    justify-content: center;
+  }
+  
+  .content-area.mobile-content {
+    padding-top: 0;
+  }
+  
+  .mobile-progress-steps {
+    margin-bottom: 15px;
+  }
+  
+  .letter-paper {
+    max-height: 75vh;
+  }
+  
+  .message-scroll {
+    max-height: 80px;
+  }
+  
+  .photos-container-portrait {
+    height: 200px;
+    max-width: 112px;
+  }
+}
+
+/* Tambahkan di InteractiveGreetingCard.css */
+
+/* Drag Handle */
+.drag-handle {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  opacity: 0.7;
+  animation: bounce 2s infinite;
+}
+
+.drag-line {
+  width: 2px;
+  height: 20px;
+  background: #F48FB1;
+  border-radius: 1px;
+}
+
+.drag-arrow {
+  color: #F48FB1;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Perbaikan untuk letter positioning */
+.letter {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+
+.letter.mobile-letter {
+  top: 45px;
+}
+
+/* Perbaikan cursor untuk drag */
+.letter-visible {
+  cursor: grab;
+  z-index: 4;
+}
+
+.letter-visible:active {
+  cursor: grabbing;
+}
+
+/* Perbaikan drag sensitivity */
+@media (max-width: 768px) {
+  .letter.mobile-letter {
+    top: 40px;
+  }
+  
+  .drag-handle {
+    top: -25px;
+  }
+  
+  .drag-line {
+    height: 15px;
+  }
+  
+  .drag-arrow {
+    font-size: 1rem;
+  }
+}
+
+/* Tambahkan di InteractiveGreetingCard.css */
+
+/* Click Handle */
+.click-handle {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: bounce 2s infinite;
+}
+
+.click-icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.click-text {
+  background: rgba(255, 255, 255, 0.9);
+  color: #F48FB1;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Perbaikan untuk letter */
+.letter {
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  transition: all 0.5s ease;
+  user-select: none;
+}
+
+.letter.mobile-letter {
+  top: 45px;
+}
+
+.letter-visible {
+  cursor: pointer;
+  z-index: 4;
+}
+
+.letter-pulled {
+  transform: translateX(-50%) translateY(-20px) scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .letter.mobile-letter {
+    top: 40px;
+  }
+  
+  .click-handle {
+    top: -40px;
+  }
+  
+  .click-icon {
+    font-size: 1.3rem;
+  }
+  
+  .click-text {
+    font-size: 0.7rem;
+    padding: 4px 8px;
+  }
+}
+
+/* Letter Content - Fixed Position di tengah */
+.letter-content-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  padding: 20px;
+}
+
+.letter-content-overlay.content-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.letter-content {
+  background: transparent;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.letter-content.mobile-letter-content {
+  max-width: 400px;
+  width: 95%;
+}
+
+.letter-paper {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  position: relative;
+  border: 3px solid #FFD1DC;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Scrollable Content Area */
+.letter-scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #FFD1DC #f1f1f1;
+}
+
+.letter-scrollable-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.letter-scrollable-content::-webkit-scrollbar-track {
+  background: #f8f8f8;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.letter-scrollable-content::-webkit-scrollbar-thumb {
+  background: #FFD1DC;
+  border-radius: 4px;
+  border: 2px solid #f8f8f8;
+  transition: all 0.3s ease;
+}
+
+.letter-scrollable-content::-webkit-scrollbar-thumb:hover {
+  background: #F48FB1;
+}
+
+/* Letter Header */
+.letter-header {
+  text-align: center;
+  margin-bottom: 25px;
+  padding-right: 40px;
+}
+
+.recipient-name {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.heart-divider {
+  font-size: 1.8rem;
+  opacity: 0.7;
+}
+
+/* Letter Message - Now scrollable within the content */
+.letter-message {
+  margin-bottom: 30px;
+}
+
+.message-content {
+  line-height: 1.7;
+}
+
+.letter-message p {
+  font-size: 1rem;
+  margin: 0;
+  text-align: center;
+  white-space: pre-line;
+}
+
+/* Photo Gallery - Smaller untuk muat dalam scroll */
+.photo-gallery {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photos-container-portrait {
+  position: relative;
+  width: 100%;
+  max-width: 250px; /* Lebih kecil */
+  height: 445px; /* 9:16 ratio - 250x445px */
+  margin: 0 auto 20px;
+  perspective: 1000px;
+}
+
+.photo-frame-portrait {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.8) rotateY(10deg);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  border: 2px solid white;
+}
+
+.photo-frame-portrait.active {
+  opacity: 1;
+  transform: scale(1) rotateY(0deg);
+  z-index: 2;
+}
+
+.photo-frame-portrait:not(.active) {
+  transform: scale(0.7) rotateY(-5deg);
+  filter: blur(1px);
+  z-index: 1;
+}
+
+.photo-frame-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.photo-frame-portrait.active img {
+  transform: scale(1.05);
+}
+
+.photo-overlay-portrait {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent 0%, transparent 70%, rgba(0,0,0,0.1) 100%);
+  pointer-events: none;
+}
+
+.photo-number {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #F48FB1;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.75rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Portrait Photo Dots */
+.photo-dots-portrait {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.dot-portrait {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FFD1DC;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.dot-portrait.active {
+  background: #F48FB1;
+  transform: scale(1.2);
+}
+
+.dot-portrait::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 1px solid #F48FB1;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dot-portrait.active::before {
+  opacity: 0.3;
+}
+
+/* Letter Footer */
+.letter-footer {
+  text-align: center;
+  position: relative;
+  padding-top: 25px;
+  margin-top: 10px;
+  border-top: 1px solid #FFD1DC;
+}
+
+.sender-name {
+  font-style: italic;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.seal {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  font-size: 1.3rem;
+  transform: rotate(15deg);
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #F48FB1;
+  color: white;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  background: #FF868E;
+  transform: scale(1.1);
+}
+
+/* Responsive Design untuk Scrollable Content */
+@media (max-width: 768px) {
+  .letter-content {
+    max-width: 90%;
+  }
+  
+  .letter-paper {
+    padding: 25px 20px;
+    border-radius: 15px;
+    max-height: 80vh;
+  }
+  
+  .letter-scrollable-content {
+    padding-right: 8px;
+  }
+  
+  .letter-scrollable-content::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .recipient-name {
+    font-size: 1.5rem;
+  }
+  
+  .heart-divider {
+    font-size: 1.5rem;
+  }
+  
+  .letter-message p {
+    font-size: 0.9rem;
+  }
+  
+  .photos-container-portrait {
+    max-width: 200px;
+    height: 356px; /* 9:16 ratio - 200x356px */
+  }
+  
+  .photo-frame-portrait {
+    border-radius: 10px;
+  }
+  
+  .photo-number {
+    width: 22px;
+    height: 22px;
+    font-size: 0.7rem;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .sender-name {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .letter-paper {
+    padding: 20px 15px;
+    max-height: 75vh;
+  }
+  
+  .photos-container-portrait {
+    max-width: 180px;
+    height: 320px; /* 9:16 ratio - 180x320px */
+  }
+  
+  .photo-dots-portrait {
+    gap: 8px;
+  }
+  
+  .dot-portrait {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .close-button {
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Untuk pesan yang sangat panjang */
+@media (max-height: 600px) {
+  .letter-paper {
+    max-height: 70vh;
+  }
+  
+  .photos-container-portrait {
+    max-width: 150px;
+    height: 267px; /* 9:16 ratio - 150x267px */
+  }
+}
