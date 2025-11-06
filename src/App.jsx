@@ -6,10 +6,13 @@ import './App.css'
 function App() {
   // Data spesifik untuk greeting card ini
   const greetingData = {
-    recipientName: "Jessica",
-    senderName: "Michael", 
+    recipientName: "Majiid",
+    senderName: "Dara", 
     message: "Untuk Jessica yang cantik... Terima kasih sudah menjadi bagian dari cerita indah hidupku. Semoga kebahagiaan selalu menyertaimu di setiap langkah. Setiap momen bersamamu adalah kenangan yang sangat berharga.",
     photos: [
+      "/gambar/memory1.jpg",
+      "/gambar/memory2.jpg",
+      "/gambar/memory3.jpg",
       "/gambar/potrait1.JPG",
       "/gambar/potrait2.JPG", 
       "/gambar/potrait3.JPG"

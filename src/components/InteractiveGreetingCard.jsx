@@ -4,7 +4,7 @@ import './InteractiveGreetingCard.css'
 const InteractiveGreetingCard = ({ 
   recipientName = "Sahabat Terbaik",
   senderName = "Flomma Flower",
-  message1 = "Terima kasih sudah menjadi bagian dari cerita indah hidupku. Semoga kebahagiaan selalu menyertaimu di setiap langkah.",
+  message1 = "Selamat menjalani hidup yang serius. Jangan lupa untuk selalu berdoa dan berusaha",
   message2 = "Terima kasih sudah menjadi bagian dari cerita indah hidupku. Semoga kebahagiaan selalu menyertaimu di setiap langkah.",
   photos = [],
   backgroundColor = "#FFD1DC",
